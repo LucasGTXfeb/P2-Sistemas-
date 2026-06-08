@@ -1,119 +1,329 @@
-# Gerenciador de Tarefas (To-Do List) — React + TypeScript
+# 📋 Gerenciador de Tarefas — To-Do List
+## Desenvolvido com React + TypeScript + Spec Driven Development
 
-Um gerenciador de tarefas elegante, responsivo e de alto desempenho projetado para auxiliar usuários na organização de suas atividades diárias. Desenvolvido sob a metodologia **Spec Driven Development (SDD)**, com foco em estabilidade, tipagem estática segura, separação de lógica e testes automatizados.
-
----
-
-## 🚀 Tecnologias Utilizadas
-
-- **Core**: React 18+ (Vite) com TypeScript para tipagem estática e segurança.
-- **Estilização**: CSS3 Puro (Vanilla CSS) com design moderno em Dark Mode, variáveis de design dinâmicas, glassmorphism e micro-animações.
-- **Testes Unitários**: Vitest para execução rápida de testes das regras de negócio.
-- **Testes End-to-End (E2E)**: Cypress para simulação completa de interações em navegador real.
-- **SDD Tooling**: OpenSpec para ciclo de vida de especificação e desenvolvimento orientado a contratos.
+Um gerenciador de tarefas elegante, responsivo e de alto desempenho projetado para auxiliar usuários na organização de suas atividades diárias. Desenvolvido sob a metodologia **Spec Driven Development (SDD)**, combinando especificações detalhadas com testes automatizados e ciclos iterativos.
 
 ---
 
-## 📁 Estrutura de Pastas do Projeto
+## 🎯 Visão Geral
 
-```text
-TDE4_GERENCIADOR_DE_TAREFAS/
-├── .agent/                 # Workflows e habilidades do agente de IA
-├── cypress/                # Estrutura do Cypress para testes E2E
+Este projeto demonstra as melhores práticas de desenvolvimento web moderno, incluindo:
+
+- ✅ **Especificação Detalhada** - Requisitos claros e testáveis desde o início
+- 🧪 **Testes Completos** - Unitários e End-to-End automatizados
+- 🎨 **Design Responsivo** - Interface moderna com glassmorphism e animações suaves
+- 💾 **Persistência Local** - Dados salvos automaticamente no navegador
+- 🚀 **Performance Otimizada** - Build com Vite e tipagem estática do TypeScript
+
+---
+
+## 🛠️ Tecnologias
+
+| Tecnologia | Propósito | Versão |
+|-----------|----------|--------|
+| **React** | Framework UI | 19.2.6+ |
+| **TypeScript** | Tipagem estática | 6.0.2+ |
+| **Vite** | Build tool & Dev Server | 8.0.12+ |
+| **Vitest** | Testes Unitários | 4.1.7+ |
+| **Cypress** | Testes E2E | 15.15.0+ |
+| **CSS3** | Estilização (Vanilla) | Puro |
+| **OpenSpec** | SDD Tooling | - |
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+P2-Sistemas-/
+├── 📂 src/                           # Código-fonte da aplicação
+│   ├── 📂 components/                # Componentes React reutilizáveis
+│   │   ├── TodoFilter.tsx            # Botões de filtro por status
+│   │   ├── TodoForm.tsx              # Formulário de entrada de tarefas
+│   │   ├── TodoItem.tsx              # Visualização e edição de tarefa
+│   │   └── TodoList.tsx              # Container da lista
+│   ├── 📂 assets/                    # Imagens e recursos estáticos
+│   ├── App.tsx                       # Componente principal (gerenciador de estado)
+│   ├── App.css                       # Estilos da aplicação
+│   ├── index.css                     # Design system global (variáveis, animações)
+│   ├── main.tsx                      # Ponto de entrada React
+│   ├── types.ts                      # Declarações de tipos TypeScript
+│   ├── todoLogic.ts                  # Lógica de negócio (pure functions)
+│   └── todo.test.ts                  # Testes unitários com Vitest
+│
+├── 📂 cypress/                       # Testes End-to-End
 │   └── e2e/
-│       └── todo.cy.ts      # Suíte de testes ponta a ponta
-├── openspec/               # Arquivos globais de especificação do OpenSpec
-│   ├── changes/            # Histórico de alterações propostas e arquivadas
-│   └── specs/              # Especificações globais consolidadas
-├── src/                    # Código-fonte da aplicação React
-│   ├── assets/             # Recursos de mídia e imagens estáticas
-│   ├── components/         # Componentes isolados da interface
-│   │   ├── TodoFilter.tsx  # Botões de alternância de filtros de status
-│   │   ├── TodoForm.tsx    # Formulário de entrada com select de prioridades
-│   │   ├── TodoItem.tsx    # Visualização e formulário de edição inline da tarefa
-│   │   └── TodoList.tsx    # Container da lista com comportamento de lista vazia
-│   ├── App.css             # Estilo limpo padrão
-│   ├── App.tsx             # Componente central que gerencia o estado e LocalStorage
-│   ├── index.css           # Design system (variáveis CSS, layouts e animações)
-│   ├── main.tsx            # Ponto de montagem da aplicação React
-│   ├── todo.test.ts        # Testes unitários com Vitest
-│   ├── todoLogic.ts        # Lógica de negócio pura (add, toggle, edit, delete, filter)
-│   └── types.ts            # Declaração dos tipos estáticos (Todo, Priority)
-├── cypress.config.ts       # Configurações do Cypress (baseUrl e supportFile)
-├── index.html              # Entrada raiz otimizada para SEO e acessibilidade
-├── package.json            # Manifest de dependências e scripts de execução
-├── spec-v1.md              # Especificação de Requisitos da Versão 1
-├── spec-v2.md              # Especificação de Requisitos da Versão 2
-├── tsconfig.json           # Configurações globais do TypeScript
-└── vite.config.ts          # Configurações do compilador do Vite
+│       └── todo.cy.ts                # Suite de testes Cypress
+│
+├── 📂 openspec/                      # Especificações OpenSpec
+│   ├── changes/                      # Histórico de alterações
+│   └── specs/                        # Especificações consolidadas
+│
+├── 📂 prints_Das_Etapas/             # Evidências do projeto
+│   ├── Etapa_01.png                  # Interface v1
+│   └── Etapa_02.png                  # Interface v2
+│
+├── 📄 spec-v1.md                     # Especificação Versão 1 (MVP)
+├── 📄 spec-v2.md                     # Especificação Versão 2 (Evolução)
+├── 📄 package.json                   # Dependências e scripts
+├── 📄 tsconfig.json                  # Configurações TypeScript
+├── 📄 tsconfig.app.json              # TypeScript para app
+├── 📄 tsconfig.node.json             # TypeScript para ferramentas
+├── 📄 vite.config.ts                 # Configurações Vite
+├── 📄 cypress.config.ts              # Configurações Cypress
+├── 📄 eslint.config.js               # Regras de linting
+└── 📄 index.html                     # Entry point HTML
 ```
 
 ---
 
-## 📥 Instalação e Execução
+## 🚀 Instalação e Execução
 
-### 1. Pré-requisitos
-Certifique-se de possuir o [Node.js](https://nodejs.org/) instalado em seu sistema.
+### Pré-requisitos
+- **Node.js** 16.x ou superior ([Download](https://nodejs.org/))
+- **npm** ou **yarn** (inclusos com Node.js)
 
-### 2. Instalar Dependências
-Instale todas as dependências de produção e de desenvolvimento do projeto:
+### 1️⃣ Clonar o Repositório
+```bash
+git clone https://github.com/LucasGTXfeb/P2-Sistemas-.git
+cd P2-Sistemas-
+```
+
+### 2️⃣ Instalar Dependências
 ```bash
 npm install
 ```
 
-### 3. Iniciar o Servidor de Desenvolvimento
-Inicie a aplicação localmente:
+### 3️⃣ Iniciar o Servidor de Desenvolvimento
 ```bash
 npm run dev
 ```
-O projeto estará disponível por padrão em: `http://localhost:5173/` (ou `http://127.0.0.1:5173/`).
+A aplicação estará disponível em: **`http://localhost:5173/`**
 
 ---
 
-## 🧪 Execução de Testes
+## 🧪 Testes
 
 ### Testes Unitários (Vitest)
-Para executar a suíte de testes unitários que valida as 8 regras de negócio de forma isolada:
+Valida a lógica de negócio isoladamente:
+
 ```bash
 npx vitest
 ```
 
+**Cobertura**: 8 regras de negócio principais
+
 ### Testes E2E (Cypress)
-Para abrir a interface gráfica interativa do Cypress para execução visual de testes ponta a ponta:
+Simula interações completas no navegador:
+
 ```bash
+# Interface gráfica interativa
 npx cypress open
-```
-Para executar os testes E2E diretamente pelo terminal em modo headless (com o servidor de desenvolvimento ativo):
-```bash
+
+# Execução headless (terminal)
 npx cypress run
 ```
+
+**Cenários**: Cadastro, edição, exclusão, filtros e persistência
+
+---
+
+## 📋 Funcionalidades Principais
+
+### ✅ RF01 - Cadastrar Tarefas
+- Entrada de texto para título (obrigatório)
+- Seletor de prioridade (Baixa, Média, Alta)
+- Prioridade padrão: **Média**
+- Status inicial: **Pendente**
+
+### ✅ RF02 - Listar e Filtrar
+- Filtros: **Todas**, **Pendentes**, **Concluídas**
+- Filtro padrão: **Todas**
+- Exibição de: título, data, status, prioridade
+
+### ✅ RF03 - Editar Tarefas
+- Modo edição inline
+- Editáveis: título e prioridade
+- Data de criação preservada
+- Validação de campos vazios
+
+### ✅ RF04 - Excluir Tarefas
+- Remoção imediata e irreversível
+- Atualização automática do estado
+
+### ✅ RF05 - Marcar Concluído/Pendente
+- Toggle de status com uma clique
+- Visual feedback imediato
+
+### ✅ RF06 - Persistência Local
+- Dados salvos em `localStorage`
+- Recuperação automática ao recarregar
+- Sincronização em tempo real
+
+---
+
+## 🎨 Design System
+
+### Paleta de Cores
+
+| Variável | Cor | Uso |
+|----------|-----|-----|
+| `--accent-primary` | ![#0ea5e9](https://img.shields.io/badge/-0ea5e9?style=flat&labelColor=0ea5e9) Sky Blue | Botões, links, focos |
+| `--accent-secondary` | ![#06b6d4](https://img.shields.io/badge/-06b6d4?style=flat&labelColor=06b6d4) Cyan | Gradientes, destaques |
+| `--success` | ![#10b981](https://img.shields.io/badge/-10b981?style=flat&labelColor=10b981) Green | Confirmação, check |
+| `--error` | ![#ef4444](https://img.shields.io/badge/-ef4444?style=flat&labelColor=ef4444) Red | Erros, exclusão |
+| `--warning` | ![#f59e0b](https://img.shields.io/badge/-f59e0b?style=flat&labelColor=f59e0b) Amber | Prioridade média |
+
+### Componentes de Interface
+
+- **Glass Panels**: Efeito glassmorphism com blur
+- **Badges de Prioridade**: Codificação por cor (Baixa, Média, Alta)
+- **Checkboxes Customizadas**: Design moderno com animações
+- **Botões Interativos**: Feedback visual em hover/focus
+- **Animações**: Fade-in, slide-in, shake (validação)
 
 ---
 
 ## 📝 Documentos de Especificação
 
-- **[spec-v1.md](file:///c:/Users/Usuario/Desktop/TDE4_GERENCIADOR_DE_TAREFAS/spec-v1.md)**: Requisitos iniciais para cadastro simples, listagem e conclusão de status.
-- **[spec-v2.md](file:///c:/Users/Usuario/Desktop/TDE4_GERENCIADOR_DE_TAREFAS/spec-v2.md)**: Requisitos evolutivos contendo as regras de negócio para edição inline, exclusão, filtros por status, badges de prioridades (Baixa, Média, Alta) e persistência via LocalStorage.
+### [spec-v1.md](./spec-v1.md)
+Especificação inicial para o **MVP (Minimum Viable Product)**:
+- Requisitos básicos (cadastro, listagem, conclusão)
+- Critérios de aceite
+- Cenários de uso iniciais
+
+### [spec-v2.md](./spec-v2.md)
+Especificação evolutiva com **recursos avançados**:
+- Edição de tarefas (novo)
+- Exclusão de tarefas (novo)
+- Filtros por status (evolução)
+- Persistência local (novo)
+- 6 requisitos funcionais com 12+ cenários de teste
 
 ---
 
-## 📸 Evidências das Etapas (Prints)
+## 📸 Evidências do Projeto
 
-As capturas de tela que ilustram o funcionamento da aplicação e a execução dos testes estão salvas na pasta **[prints_Das_Etapas](file:///c:/Users/Usuario/Desktop/TDE4_GERENCIADOR_DE_TAREFAS/prints_Das_Etapas)**:
+### Etapa 1 - Versão 1
+![Etapa 1](prints_Das_Etapas/Etapa_01.png)
 
-- **Etapa 1 (Interface básica da Versão 1)**:
-  - Caminho: `prints_Das_Etapas/Etapa_01.png`
-  - Link direto: **[Visualizar Etapa 1](file:///c:/Users/Usuario/Desktop/TDE4_GERENCIADOR_DE_TAREFAS/prints_Das_Etapas/Etapa_01.png)**
-- **Etapa 2 (Interface avançada com filtros, prioridades, edição inline e exclusão da Versão 2)**:
-  - Caminho: `prints_Das_Etapas/Etapa_02.png`
-  - Link direto: **[Visualizar Etapa 2](file:///c:/Users/Usuario/Desktop/TDE4_GERENCIADOR_DE_TAREFAS/prints_Das_Etapas/Etapa_02.png)**
+**Interface Básica**:
+- Formulário simples de cadastro
+- Lista de tarefas com status
+- Botão para adicionar
+
+### Etapa 2 - Versão 2
+![Etapa 2](prints_Das_Etapas/Etapa_02.png)
+
+**Interface Avançada**:
+- Filtros por status
+- Níveis de prioridade com badges
+- Edição inline de tarefas
+- Botões de exclusão
+- Design refatorado com glassmorphism
 
 ---
 
-## 🧠 Reflexão: SDD e o Impacto do Desenvolvimento com IA
+## 🧠 Reflexão: SDD e Desenvolvimento com IA
 
-A transição entre a versão 1 e a versão 2 da especificação demonstrou claramente a força do **Spec Driven Development (SDD)** no ciclo de desenvolvimento de software. Ao detalhar meticulosamente os novos requisitos, as regras de negócio associadas (como a prioridade padrão "Média" e a obrigatoriedade do título) e os cenários de uso em formato estruturado na `spec-v2.md`, foi possível programar a aplicação de maneira puramente determinística. Esse nível de clareza impediu o surgimento de ambiguidades técnicas, permitindo que a arquitetura do aplicativo fosse previamente desenhada para isolar as funções de manipulação de tarefas em um módulo de lógica pura (`todoLogic.ts`). Com isso, a codificação tornou-se mais fluida e assertiva, reduzindo o tempo de depuração e garantindo que cada componente focasse estritamente em suas responsabilidades de UI.
+### O Impacto da Especificação
 
-Além disso, a especificação detalhada funcionou como um contrato direto para a criação de testes automatizados extremamente completos. As regras e cenários descritos na `spec-v2.md` serviram como blueprint para desenhar os 8 testes unitários no Vitest (cobrindo inclusive mocks seguros de LocalStorage via `globalThis`) e os 8 cenários E2E no Cypress. A instrumentação prévia do DOM usando seletores estáveis `data-testid` evitou que testes quebrassem devido a mudanças visuais de layout, elevando a robustez da validação de ponta a ponta. Como resultado, o projeto foi entregue com uma base sólida de regressão, onde qualquer modificação futura pode ser verificada instantaneamente com comandos simples.
+A evolução entre **Versão 1** (spec-v1.md) e **Versão 2** (spec-v2.md) demonstrou claramente os benefícios do **Spec Driven Development**:
 
-O papel da inteligência artificial nessa evolução foi essencial como parceiro de desenvolvimento (*pair programmer*). A IA atuou desde o refinamento inicial dos arquivos OpenSpec até a geração dos componentes React e das suítes de testes, convertendo descrições abstratas em soluções estruturadas e com boas práticas (como o uso de `crypto.randomUUID()` nativo e tipagem com `import type`). A capacidade da IA de analisar erros do compilador TypeScript (como as restrições da regra `verbatimModuleSyntax`) e diagnosticar problemas de conexão no Cypress (resolvidos pela alteração de binds de IPv6 para IPv4 `127.0.0.1`) acelerou significativamente a entrega do software, garantindo um código final de alta qualidade, otimizado para SEO, limpo e livre de falhas de build.
+✅ **Clareza de Requisitos** - Especificações detalhadas eliminam ambiguidades  
+✅ **Testes Automáticos** - Cenários da spec viram testes executáveis  
+✅ **Iteração Controlada** - Mudanças são planejadas e rastreáveis  
+✅ **Qualidade de Código** - Requisitos claros geram código mais limpo  
+
+### Parceria com IA (Pair Programming)
+
+O desenvolvimento foi potencializado com inteligência artificial atuando como **pair programmer**:
+
+- **Refinamento de Especificações** - Auxílio na estruturação e detalhe dos requisitos
+- **Geração de Testes** - Testes automatizados mapeados a partir dos cenários
+- **Implementação** - Código-fonte desenvolvido respeitando a especificação
+- **Revisão Contínua** - Feedback iterativo para melhorias
+
+### Resultado
+
+Um projeto de **qualidade de produção** que demonstra:
+- Profissionalismo no planejamento (SDD)
+- Código testado e confiável
+- Documentação completa
+- Código mantível e escalável
+
+---
+
+## 📚 Scripts Disponíveis
+
+```bash
+# Desenvolvimento
+npm run dev              # Inicia servidor com hot-reload
+
+# Build
+npm run build           # Compila para produção
+
+# Testes
+npx vitest              # Testes unitários com watch mode
+npx vitest run          # Testes unitários (uma execução)
+
+# Testes E2E
+npx cypress open        # Interface gráfica Cypress
+npx cypress run         # Testes headless
+
+# Qualidade
+npm run lint            # ESLint
+npm run preview         # Preview da build
+
+```
+
+---
+
+## 🔒 Validações Implementadas
+
+### Validação de Entrada
+- ✅ Título não pode ser vazio ou só espaços
+- ✅ Mensagens de erro em tempo real
+- ✅ Feedback visual com shake animation
+
+### Validação de Estado
+- ✅ Prioridade padrão = Média
+- ✅ Status inicial = Pendente
+- ✅ Data de criação não é alterada
+- ✅ Sincronização localStorage automática
+
+### Validação de Comportamento
+- ✅ Cancelamento de edição restaura valores originais
+- ✅ Exclusão é irreversível
+- ✅ Filtros funcionam corretamente
+- ✅ Recarregamento mantém estado
+
+---
+
+## 🎓 Lições Aprendidas
+
+1. **Especificações são contratos** - Defini-las bem economiza retrabalho
+2. **Testes criam confiança** - Code coverage completo aumenta velocidade
+3. **Design system centralizado** - CSS com variáveis facilita manutenção
+4. **IA como ferramenta** - Potencia produtividade quando bem integrada
+5. **Iteração controlada** - v1 → v2 foi mais fácil com SDD
+
+---
+
+## 📞 Suporte
+
+Para dúvidas ou sugestões sobre o projeto:
+- 📧 Abra uma [issue](https://github.com/LucasGTXfeb/P2-Sistemas-/issues)
+- 💬 Consulte as documentações (spec-v1.md, spec-v2.md)
+- 📖 Verifique os testes para exemplos de uso
+
+---
+
+## 📄 Licença
+
+Este projeto é fornecido como é, para fins educacionais e de demonstração.
+
+---
+
+**Desenvolvido com ❤️ e IA como pair programmer**
+
+*Última atualização: 2026-06-08*
